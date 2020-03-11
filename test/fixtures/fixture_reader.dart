@@ -1,3 +1,11 @@
 import 'dart:io';
 
-String fixture(String name) => File('test/fixtures/$name').readAsStringSync();
+import 'package:path/path.dart';
+
+String fixture(String name) {
+  var dir = Directory.current.path;
+  if (dir.endsWith('/test')) {
+    dir = dir.replaceAll('/test', '');
+  }
+  return File(join(dir, 'test', 'fixtures', name)).readAsStringSync();
+}
