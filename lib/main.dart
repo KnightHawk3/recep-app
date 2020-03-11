@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:recep_app/features/number_trivia/presentation/pages/number_trivia_page.dart';
 import 'package:recep_app/features/recipe_list/presentation/pages/recipe_list_page.dart';
 
 import 'injection_container.dart' as di;

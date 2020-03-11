@@ -43,12 +43,14 @@ class RecipeRepositoryImpl implements RecipeRepository {
       remote.map((recipe) async {
         await this.localDataSource.cacheRecipe(recipe);
       }).toList();
-      return remote.map(
-          (recipe) => RecipeIdentifier(id: recipe.id, title: recipe.title)).toList();
+      return remote
+          .map((recipe) => RecipeIdentifier(id: recipe.id, title: recipe.title))
+          .toList();
     }, local: () async {
       final local = await this.localDataSource.getAllRecipes();
-      return local.map(
-          (recipe) => RecipeIdentifier(id: recipe.id, title: recipe.title)).toList();
+      return local
+          .map((recipe) => RecipeIdentifier(id: recipe.id, title: recipe.title))
+          .toList();
     });
   }
 
@@ -58,7 +60,6 @@ class RecipeRepositoryImpl implements RecipeRepository {
   /// otherwise falls back to [local]
   Future<Either<Failure, T>> _remoteOrLocal<T>(
       {Future<T> local(), Future<T> remote()}) async {
-    print('Network is connected? ${await networkInfo.isConnected}');
     if (await networkInfo.isConnected) {
       try {
         return Right(await remote());

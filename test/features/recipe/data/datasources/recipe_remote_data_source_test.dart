@@ -32,7 +32,7 @@ void main() {
           .thenAnswer((_) async => http.Response(fixture('recipe.json'), 200));
     }
 
-    final id = '100-100-100-100';
+    final id = '000-000-000';
     final recipeResponse =
         RecipeResponse.fromJson(json.decode(fixture('recipe.json')));
 
@@ -46,7 +46,7 @@ void main() {
         dataSource.getRemoteRecipe(id);
         // assert
         verify(mockHttpClient.get(
-          'http://localhost:8000/recipe/$id',
+          'http://10.0.2.2:8090/recipe/$id',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -81,9 +81,10 @@ void main() {
 
   group('getAllRecipes', () {
     void setUpMockHttpClientSuccess200() {
-      when(mockHttpClient.get(any, headers: anyNamed('headers')))
-          .thenAnswer((_) async => http.Response(fixture('recipe_list.json'), 200));
+      when(mockHttpClient.get(any, headers: anyNamed('headers'))).thenAnswer(
+          (_) async => http.Response(fixture('recipe_list.json'), 200));
     }
+
     final recipeResponse = [
       RecipeResponse.fromJson(json.decode(fixture('recipe.json')))
     ];
@@ -98,7 +99,7 @@ void main() {
         dataSource.getAllRemoteRecipes();
         // assert
         verify(mockHttpClient.get(
-          'http://localhost:8000/recipe/all',
+          'http://10.0.2.2:8090/recipes',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -114,7 +115,7 @@ void main() {
         // act
         final result = await dataSource.getAllRemoteRecipes();
         // assert
-        expect(result, equals(recipeResponse));
+        expect([result.first], equals(recipeResponse));
       },
     );
   });

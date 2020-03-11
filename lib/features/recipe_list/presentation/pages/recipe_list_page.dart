@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:recep_app/features/number_trivia/presentation/widgets/widgets.dart';
 import 'package:recep_app/features/recipe_list/presentation/bloc/bloc.dart';
-import 'package:recep_app/features/recipe_list/presentation/widgets/recipe_list_display.dart';
+import 'package:recep_app/features/recipe_list/presentation/widgets/widget.dart';
 
 import '../../../../injection_container.dart';
 
@@ -31,7 +30,6 @@ class RecipeListPage extends StatelessWidget {
               // Top half
               BlocBuilder<RecipeListBloc, RecipeListState>(
                 builder: (context, state) {
-                  print(state);
                   if (state is Empty) {
                     return LoadingWidget();
                   } else if (state is Loading) {
