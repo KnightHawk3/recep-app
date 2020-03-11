@@ -1,0 +1,19 @@
+{
+  "id": "000-000-000",
+  "title": "Spaghetti Bolgenese",
+  "ingredients": [
+    {
+      "amount": 1,
+      "unit": "Cup",
+      "adjective": "Diced",
+      "ingredient": {
+        "id": "UUID",
+        "name": "Onion"
+      }
+    }
+  ],
+  "steps": [
+    "Fry the onions in oil",
+    "Add the tomato's to the pan"
+  ]
+}
